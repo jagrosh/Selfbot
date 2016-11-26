@@ -1,6 +1,15 @@
 # Selfbot
 This is a simple Discord selfbot, written in Java using the [JDA](https://github.com/DV8FromTheWorld/JDA) library.
 
+## Features
+* `me` command for showing when you are doing an action
+* Quote other users' messages
+* Cleanup your own messages if you realize you were spamming
+* Set your Discord game (Playing ...)
+* Use "custom emojis"; when you type :emojiname: your preset text will automatically be edited in
+* Make evaluations in Nashorn (javascript) using JDA methods
+* Many more features coming soon
+
 ## Requirements
 * JDK1.8
 
