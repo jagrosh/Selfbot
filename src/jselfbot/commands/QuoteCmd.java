@@ -17,8 +17,12 @@ package jselfbot.commands;
 
 import jselfbot.Command;
 import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.MessageBuilder;
+import net.dv8tion.jda.core.MessageHistory;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Message;
+import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
@@ -31,46 +35,99 @@ public class QuoteCmd extends Command {
     {
         this.name = "quote";
         this.description = "quotes a message";
-        this.arguments = "<message id>";
+        this.arguments = "<message id> [channel mention or id] [text]";
     }
     
     @Override
     protected void execute(String args, MessageReceivedEvent event) {
-        if(!args.matches("\\d{17,22}"))
+        String[] parts = args.split("\\s+", 2);
+        String id1 = parts[0].replaceAll("<#(\\d+)>", "$1");
+        if(!isId(id1))
         {
-            tempReply("Not a valid message ID", event);
+            tempReply("`"+id1+"` is not a valid message or channel ID", event);
             return;
         }
-        event.getChannel().getHistory().retrievePast(100).queue(messages -> {
-            try {
-                Message msg = messages.stream().filter(m -> m.getId().equals(args)).findAny().get();
-                EmbedBuilder builder = new EmbedBuilder();
-                builder.setAuthor(msg.getAuthor().getName()+" #"+msg.getAuthor().getDiscriminator(), null, 
-                        msg.getAuthor().getAvatarUrl()==null ? msg.getAuthor().getDefaultAvatarUrl() : msg.getAuthor().getAvatarUrl());
-                if(event.getGuild()!=null)
-                {
-                    Member member = event.getGuild().getMemberById(msg.getAuthor().getId());
-                    if(member!=null)
-                        builder.setColor(member.getColor());
-                }
-                if(msg.isEdited())
-                {
-                    builder.setFooter("Edited", null);
-                    builder.setTimestamp(msg.getEditedTime());
-                }
-                else
-                {
-                    builder.setFooter("Sent", null);
-                    builder.setTimestamp(msg.getCreationTime());
-                }
-                builder.setDescription(msg.getRawContent());
-                reply(builder.build(), event);
-            } catch(Exception e) {
-                tempReply("Message with id `"+args+"` not found in the past 100", event);
+        MessageChannel channel = event.getJDA().getTextChannelById(id1);
+        String messageId;
+        String followingText = null;
+        if(channel != null) //channel id found, need a message id now
+        {
+            if(parts.length==1)
+            {
+                tempReply("Channel provided but no message id!", event);
+                return;
             }
-        }, t -> {
-            tempReply("Failed to retrieve history", event);
-        });
+            parts = parts[1].split("\\s+",2);
+            if(!isId(parts[0]))
+            {
+                tempReply("`"+parts[0]+"` is not a valid message ID", event);
+                return;
+            }
+            messageId = parts[0];
+            followingText = parts.length>1 ? parts[1] : null;
+        }
+        else
+        {
+            messageId = id1;
+            if(parts.length>1)
+            {
+                String[] parts2 = parts[1].split("\\s+", 2);
+                String id2 = parts2[0].replaceAll("<#(\\d+)>", "$1");
+                channel = event.getJDA().getTextChannelById(id2);
+                if(channel == null)
+                    followingText = parts[1];
+                else
+                    followingText = parts2.length>1 ? parts2[1] : null;
+            }
+        }
+        String follow = followingText;
+        if(channel==null)
+            channel = event.getChannel();
+        try
+        {
+            MessageHistory.getHistoryAround(channel, messageId, 2).queue(
+                    mh -> {
+                        if(mh.getCachedHistory().isEmpty())
+                        {
+                            tempReply("No message history around `"+messageId+"`", event);
+                            return;
+                        }
+                        Message msg = mh.getCachedHistory().size()==1 ? mh.getCachedHistory().get(0) : mh.getCachedHistory().get(1);
+                        EmbedBuilder builder = new EmbedBuilder();
+                        builder.setAuthor(msg.getAuthor().getName()+" #"+msg.getAuthor().getDiscriminator(), null, 
+                                msg.getAuthor().getAvatarUrl()==null ? msg.getAuthor().getDefaultAvatarUrl() : msg.getAuthor().getAvatarUrl());
+                        if(msg.getGuild()!=null)
+                        {
+                            Member member = msg.getGuild().getMemberById(msg.getAuthor().getId());
+                            if(member!=null)
+                                builder.setColor(member.getColor());
+                        }
+                        if(!msg.getAttachments().isEmpty() && msg.getAttachments().get(0).isImage())
+                            builder.setImage(msg.getAttachments().get(0).getUrl());
+                        if(msg.isEdited())
+                        {
+                            builder.setFooter("Edited", null);
+                            builder.setTimestamp(msg.getEditedTime());
+                        }
+                        else
+                        {
+                            builder.setFooter("Sent", null);
+                            builder.setTimestamp(msg.getCreationTime());
+                        }
+                        builder.setDescription(msg.getRawContent());
+                        reply(builder.build(), event, follow==null ? null : s -> event.getChannel().sendMessage(follow).queue());
+                    }, 
+                    f -> tempReply("Failed to retrieve history around `"+messageId+"`", event));
+        }
+        catch(Exception e)
+        {
+            tempReply("Could not retrieve history", event);
+        }
     }
     
+    
+    private static boolean isId(String id)
+    {
+        return id.matches("\\d{17,22}");
+    }
 }

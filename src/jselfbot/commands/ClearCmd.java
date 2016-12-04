@@ -30,8 +30,8 @@ public class ClearCmd extends Command {
     public ClearCmd()
     {
         this.name = "clear";
-        this.description = "cleans up recent messages within a number limit";
-        this.arguments = "<number> (default 100, up-to 100)";
+        this.description = "deletes self messages within limit";
+        this.arguments = "<number> (default 100, max 100)";
     }
     
     @Override

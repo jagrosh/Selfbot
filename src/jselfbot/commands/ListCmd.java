@@ -17,7 +17,7 @@ package jselfbot.commands;
 
 import java.util.Collection;
 import jselfbot.Command;
-import jselfbot.emojis.Emojis;
+import jselfbot.entities.Emojis;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 

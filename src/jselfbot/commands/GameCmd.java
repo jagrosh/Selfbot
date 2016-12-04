@@ -43,8 +43,8 @@ public class GameCmd extends Command {
         else
         {
             try {
-            event.getJDA().getPresence().setGame(Game.of(args));
-            result = "Game set to `"+args+"`";
+                event.getJDA().getPresence().setGame(Game.of(args));
+                result = "Game set to `"+args+"`";
             } catch(Exception e) {
                 result = "Game could not be set to `"+args+"`";
             }

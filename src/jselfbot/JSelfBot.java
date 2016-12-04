@@ -19,9 +19,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import javax.security.auth.login.LoginException;
+import jselfbot.entities.Config;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.OnlineStatus;
+import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import net.dv8tion.jda.core.utils.SimpleLog;
 
 /**
@@ -34,21 +37,21 @@ public class JSelfBot {
      * @param args the command line arguments
      */
     public static void main(String[] args){
-        /**
-         * Config:
-         * Line 1 - User Token
-         * Line 2 - Prefix
-         */
+        Config config;
         try{
-            List<String> config = Files.readAllLines(Paths.get("config.txt"));
-            if(config.size()<2)
-                throw new Exception("You must provide a token and a prefix!");
-            new JDABuilder(AccountType.CLIENT)
-                    .setToken(config.get(0))
-                    .addListener(new Bot(config))
-                    .setStatus(OnlineStatus.IDLE)
-                    .buildAsync();
+            config = new Config();
         } catch(Exception e) {
+            SimpleLog.getLog("Config").fatal(e);
+            return;
+        }
+        try {
+            new JDABuilder(AccountType.CLIENT)
+                    .setToken(config.getToken())
+                    .addListener(new Bot(config))
+                    .setStatus(config.getStatus())
+                    .setIdle(true)
+                    .buildAsync();
+        } catch(LoginException | IllegalArgumentException | RateLimitedException e) {
             SimpleLog.getLog("Login").fatal(e);
         }
     }

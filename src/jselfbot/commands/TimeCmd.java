@@ -15,34 +15,33 @@
  */
 package jselfbot.commands;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import jselfbot.Command;
-import jselfbot.entities.Emojis;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  *
  * @author John Grosh (jagrosh)
  */
-public class SetCmd extends Command {
-    private final Emojis emojis;
-    public SetCmd(Emojis emojis)
+public class TimeCmd extends Command {
+    private final ZoneId zone;
+    public TimeCmd(ZoneId zone)
     {
-        this.emojis = emojis;
-        this.name = "set";
-        this.description = "sets a :custom: emoji";
-        this.arguments = "<name> <replacement>";
+        this.zone = zone;
+        this.name = "time";
+        this.description = "checks the time";
+        this.type = Type.EDIT_ORIGINAL;
     }
     
     @Override
     protected void execute(String args, MessageReceivedEvent event) {
-        String[] parts = args.split("\\s+",2);
-        if(parts.length<2)
-        {
-            tempReply("Must include an emoji name and its content", event);
-            return;
-        }
-        emojis.setEmoji(parts[0], parts[1]);
-        tempReply("Added emoji `:\u200E"+parts[0]+":` that will convert to `"+parts[1]+"`", event);
+        ZonedDateTime t = event.getMessage().getCreationTime().atZoneSameInstant(zone);
+        String time = t.format(DateTimeFormatter.ofPattern("h:mma"));
+        String time24 = t.format(DateTimeFormatter.ofPattern("HH:mm"));
+        String name = event.getGuild()==null ? event.getAuthor().getName() : event.getMember().getEffectiveName();
+        reply("\u231A Current time for **"+name+"** is `"+time+"` (`"+time24+"`)", event);
     }
     
 }

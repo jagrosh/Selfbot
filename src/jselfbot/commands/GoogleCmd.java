@@ -15,34 +15,41 @@
  */
 package jselfbot.commands;
 
+import java.util.ArrayList;
 import jselfbot.Command;
-import jselfbot.entities.Emojis;
+import jselfbot.entities.GoogleSearcher;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  *
  * @author John Grosh (jagrosh)
  */
-public class SetCmd extends Command {
-    private final Emojis emojis;
-    public SetCmd(Emojis emojis)
+public class GoogleCmd extends Command {
+    private final GoogleSearcher google;
+    public GoogleCmd()
     {
-        this.emojis = emojis;
-        this.name = "set";
-        this.description = "sets a :custom: emoji";
-        this.arguments = "<name> <replacement>";
+        google = new GoogleSearcher();
+        this.name = "google";
+        this.description = "search google";
+        this.arguments = "<query>";
+        this.type = Type.EDIT_ORIGINAL;
     }
     
     @Override
     protected void execute(String args, MessageReceivedEvent event) {
-        String[] parts = args.split("\\s+",2);
-        if(parts.length<2)
+        ArrayList<String> results = google.getDataFromGoogle(args);
+        if(results == null)
         {
-            tempReply("Must include an emoji name and its content", event);
-            return;
+            tempReply("Error searching", event);
         }
-        emojis.setEmoji(parts[0], parts[1]);
-        tempReply("Added emoji `:\u200E"+parts[0]+":` that will convert to `"+parts[1]+"`", event);
+        else if(results.isEmpty())
+        {
+            tempReply("No results found for `"+args+"`", event);
+        }
+        else
+        {
+            reply("\uD83D\uDD0E "+results.get(0), event);
+        }
     }
     
 }

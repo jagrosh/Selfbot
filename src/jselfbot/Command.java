@@ -15,6 +15,7 @@
  */
 package jselfbot;
 
+import java.util.function.Consumer;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageEmbed;
@@ -53,12 +54,28 @@ public abstract class Command {
             event.getChannel().sendMessage(reply).queue();
     }
     
+    protected void reply(String reply, MessageReceivedEvent event, Consumer<Message> consumer)
+    {
+        if(type == Type.EDIT_ORIGINAL)
+            event.getMessage().editMessage(reply).queue(consumer);
+        else
+            event.getChannel().sendMessage(reply).queue(consumer);
+    }
+    
     protected void reply(MessageEmbed embed, MessageReceivedEvent event)
     {
         if(type == Type.EDIT_ORIGINAL)
             event.getMessage().editMessage(new MessageBuilder().setEmbed(embed).build()).queue();
         else
             event.getChannel().sendMessage(new MessageBuilder().setEmbed(embed).build()).queue();
+    }
+    
+    protected void reply(MessageEmbed embed, MessageReceivedEvent event, Consumer<Message> consumer)
+    {
+        if(type == Type.EDIT_ORIGINAL)
+            event.getMessage().editMessage(new MessageBuilder().setEmbed(embed).build()).queue(consumer);
+        else
+            event.getChannel().sendMessage(new MessageBuilder().setEmbed(embed).build()).queue(consumer);
     }
     
     protected void failure(MessageReceivedEvent event)
