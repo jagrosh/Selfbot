@@ -3,7 +3,10 @@ This is a simple Discord selfbot, written in Java using the [JDA](https://github
 
 ## Features
 * `me` command for showing when you are doing an action
-* Quote other users' messages
+* Do quick google searches
+* Make reaction-based polls quickly and easily
+* Share what time it is for you
+* Quote other users' messages (from any channel)
 * Cleanup your own messages if you realize you were spamming
 * Set your Discord game (Playing ...)
 * Use "custom emojis"; when you type :emojiname: your preset text will automatically be edited in
@@ -22,8 +25,8 @@ This is a simple Discord selfbot, written in Java using the [JDA](https://github
 3. **Create or edit config.txt.** If you didn't download the template, create a new file called `config.txt` in the same directory as JSelfBot.jar. On the first line, paste your user token (_without_ the quotation marks). On the second line, type the prefix you want to use (for example, if you put `self.` on this line, the help command would be `self.help`)
 Example config.txt:
 ```
-Mfa.sjaslkkngejfnesjkaNiCETokeNBrosdhsajshfjkjlajf
-self.
+token=Mfa.sjaslkkngejfnesjkaNiCETokeNBrosdhsajshfjkjlajf
+prefix=self.
 ```
 
 4. **You don't need to do anything with the emojis.json file.** This file gets automatically loaded at start, and saved when you make edits to your emoji list with the `set` and `delete` commands. 
