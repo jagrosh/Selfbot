@@ -18,7 +18,7 @@ This is a simple Discord selfbot, written in Java using the [JDA](https://github
 
 ## Setup
 
-1. **Download the latest release JSelfBot.jar from the [releases page](https://github.com/jagrosh/Selfbot/releases).** You can download the config.txt and/or emojis.json if you wish, although they are just templates and not necessary.
+1. **Download the latest release JSelfBot.jar from the [releases page](https://github.com/jagrosh/Selfbot/releases).** You can download the config.txt and/or emojis.json if you wish, although they are just templates and not necessary. You can download run.bat for easier starting on Windows
 
 2. **Find your User Token.** In browser or desktop Discord, type `Ctrl-Shift-I`. Go to the Console section, and type `localStorage.token`. Your user token will appear. ⚠ **Do not share this token with anyone** ⚠ This token provides complete access to your Discord account, so never share it!
 
@@ -31,7 +31,7 @@ prefix=self.
 
 4. **You don't need to do anything with the emojis.json file.** This file gets automatically loaded at start, and saved when you make edits to your emoji list with the `set` and `delete` commands. 
 
-5. **Run JSelfBot.jar.** You'll want to do this via Command Line or Terminal. On most operating systems, you can right click in a directory (sometimes you need to hold shift) and click to open a Command Prompt or Terminal. If your operating system doesn't support this, just open a command line program of some sort and navigate to the selfbot directory (if you don't know how to do this, there are plenty of tutorials online). Once in the directoy, run with `java -jar JSelfBot.jar`
+5. **Run the selfbot** If you're on Windows, you can just double-click `run.bat`. Otherwise... you'll want to do this via Command Line or Terminal. On most operating systems, you can right click in a directory (sometimes you need to hold shift) and click to open a Command Prompt or Terminal. If your operating system doesn't support this, just open a command line program of some sort and navigate to the selfbot directory (if you don't know how to do this, there are plenty of tutorials online). Once in the directoy, run with `java -jar JSelfBot.jar`
 
 ## Suggestions, Bugs, Feature Requests
 
