@@ -15,41 +15,28 @@
  */
 package jselfbot.commands;
 
+import java.time.temporal.ChronoUnit;
 import jselfbot.Command;
-import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
  *
  * @author John Grosh (jagrosh)
  */
-public class GameCmd extends Command {
+public class PingCmd extends Command {
 
-    public GameCmd()
+    public PingCmd()
     {
-        this.name = "setgame";
-        this.description = "sets or clears your current game";
-        this.arguments = "[game]";
+        this.name = "ping";
+        this.description = "checks bot's connection";
+        this.type = Type.KEEP_AND_RESEND;
     }
     
     @Override
     protected void execute(String args, MessageReceivedEvent event) {
-        String result;
-        if(args.isEmpty())
-        {
-            event.getJDA().getPresence().setGame(null);
-            result = "Game cleared.";
-        }
-        else
-        {
-            try {
-                event.getJDA().getPresence().setGame(Game.of(args));
-                result = "Game set to `"+args+"`. Note that it will appear to everyone else but will not show in your own client.";
-            } catch(Exception e) {
-                result = "Game could not be set to `"+args+"`";
-            }
-        }
-        tempReply(result, event);
+        event.getMessage().editMessage("Pinging...")
+                .queue(m -> m.editMessage("Ping: "+m.getCreationTime().until(m.getEditedTime(), ChronoUnit.MILLIS)+"ms")
+                        .queue());
     }
     
 }

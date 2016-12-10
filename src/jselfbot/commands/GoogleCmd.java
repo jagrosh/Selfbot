@@ -31,24 +31,46 @@ public class GoogleCmd extends Command {
         google = new GoogleSearcher();
         this.name = "google";
         this.description = "search google";
-        this.arguments = "<query>";
+        this.arguments = "[num] <query>";
         this.type = Type.EDIT_ORIGINAL;
     }
     
     @Override
     protected void execute(String args, MessageReceivedEvent event) {
-        ArrayList<String> results = google.getDataFromGoogle(args);
+        String[] parts = args.split("\\s+", 2);
+        int num = 1;
+        String query;
+        if(parts.length >1 && parts[0].matches("\\d+"))
+        {
+            num = Integer.parseInt(parts[0]);
+            query = parts[1];
+        }
+        else
+            query = args;
+        if(num<1 || num>10)
+        {
+            tempReply("Can only search 1 to 10 results at once!", event);
+            return;
+        }
+        ArrayList<String> results = google.getDataFromGoogle(query);
         if(results == null)
         {
-            tempReply("Error searching", event);
+            tempReply("Error, could not search google", event);
         }
         else if(results.isEmpty())
         {
-            tempReply("No results found for `"+args+"`", event);
+            tempReply("No results found for `"+query+"`", event);
         }
         else
         {
-            reply("\uD83D\uDD0E "+results.get(0), event);
+            StringBuilder builder = new StringBuilder("`"+query+"` \uD83D\uDD0E "+results.get(0));
+            if(num>1 && results.size()>1)
+            {
+                builder.append("\nSee also:");
+                for(int i=1; i<num && i<results.size(); i++)
+                    builder.append("\n<").append(results.get(i)).append(">");
+            }
+            reply(builder.toString(), event);
         }
     }
     

@@ -34,7 +34,7 @@ public class GoogleSearcher {
     public ArrayList<String> getDataFromGoogle(String query) {
         String request;
         try {
-            request = "https://www.google.com/search?q=" + URLEncoder.encode(query, "UTF-8") + "&num=10";
+            request = "https://www.google.com/search?q=" + URLEncoder.encode(query, "UTF-8") + "&num=20";
         } catch (UnsupportedEncodingException ex) {
             System.err.println(ex);
             return null;
@@ -57,7 +57,7 @@ public class GoogleSearcher {
                 try {
                     //result.add(temp.substring(7,temp.indexOf("&sa="))+"\n");
                     String rslt = URLDecoder.decode(temp.substring(7,temp.indexOf("&sa=")),"UTF-8");
-                    if(!rslt.equals("/settings/ads/preferences?hl=en"))
+                    if(!rslt.equals("/settings/ads/preferences?hl=en") && !rslt.startsWith("http://webcache.googleusercontent.com"))
                         result.add(rslt);
                 } catch (UnsupportedEncodingException ex) {
                 }

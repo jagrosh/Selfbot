@@ -15,14 +15,15 @@
  */
 package jselfbot;
 
-import java.util.List;
 import jselfbot.commands.*;
 import jselfbot.entities.Config;
 import jselfbot.entities.Emojis;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.MessageBuilder;
+import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.dv8tion.jda.core.utils.SimpleLog;
 
 /**
  *
@@ -47,6 +48,7 @@ public class Bot extends ListenerAdapter {
             new GoogleCmd(),
             new ListCmd(emojis),
             new MeCmd(),
+            new PingCmd(),
             new PollCmd(),
             new QuoteCmd(),
             new SetCmd(emojis),
@@ -54,6 +56,13 @@ public class Bot extends ListenerAdapter {
         };
     }
 
+    @Override
+    public void onReady(ReadyEvent event) {
+        SimpleLog.getLog("Selfbot").info("Successfully logged in as "+event.getJDA().getSelfUser().getName()
+                +"#"+event.getJDA().getSelfUser().getDiscriminator()+"!\nYou are currently in "+event.getJDA().getGuilds().size()
+                +" guilds!\nType "+prefix+"help in Discord to get started!");
+    }
+    
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         // the selfbot only replies to the user account it is running on

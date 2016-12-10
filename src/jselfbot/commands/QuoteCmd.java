@@ -92,7 +92,7 @@ public class QuoteCmd extends Command {
                             tempReply("No message history around `"+messageId+"`", event);
                             return;
                         }
-                        Message msg = mh.getCachedHistory().size()==1 ? mh.getCachedHistory().get(0) : mh.getCachedHistory().get(1);
+                        Message msg = mh.getCachedHistory().size()==1 || mh.getCachedHistory().size()==2 ? mh.getCachedHistory().get(0) : mh.getCachedHistory().get(1);
                         EmbedBuilder builder = new EmbedBuilder();
                         builder.setAuthor(msg.getAuthor().getName()+" #"+msg.getAuthor().getDiscriminator(), null, 
                                 msg.getAuthor().getAvatarUrl()==null ? msg.getAuthor().getDefaultAvatarUrl() : msg.getAuthor().getAvatarUrl());
