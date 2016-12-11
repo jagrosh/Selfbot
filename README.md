@@ -27,6 +27,8 @@ Example config.txt:
 ```
 token=Mfa.sjaslkkngejfnesjkaNiCETokeNBrosdhsajshfjkjlajf
 prefix=self.
+timezone=GMT+4
+status=IDLE
 ```
 
 4. **You don't need to do anything with the emojis.json file.** This file gets automatically loaded at start, and saved when you make edits to your emoji list with the `set` and `delete` commands. 
