@@ -33,7 +33,7 @@ status=IDLE
 
 4. **You don't need to do anything with the emojis.json file.** This file gets automatically loaded at start, and saved when you make edits to your emoji list with the `set` and `delete` commands. 
 
-5. **Run the selfbot** If you're on Windows, you can just double-click `run.bat`. Otherwise... you'll want to do this via Command Line or Terminal. On most operating systems, you can right click in a directory (sometimes you need to hold shift) and click to open a Command Prompt or Terminal. If your operating system doesn't support this, just open a command line program of some sort and navigate to the selfbot directory (if you don't know how to do this, there are plenty of tutorials online). Once in the directoy, run with `java -jar JSelfBot.jar`
+5. **Run the selfbot** If you're on Windows, you can just double-click `run.bat`. On Mac, double-click `run.command`. Otherwise... you'll want to do this via Command Line or Terminal. On most operating systems, you can right click in a directory (sometimes you need to hold shift) and click to open a Command Prompt or Terminal. If your operating system doesn't support this, just open a command line program of some sort and navigate to the selfbot directory (if you don't know how to do this, there are plenty of tutorials online). Once in the directoy, run with `java -jar JSelfBot.jar`
 
 ## Suggestions, Bugs, Feature Requests
 
