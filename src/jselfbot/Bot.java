@@ -43,6 +43,8 @@ public class Bot extends ListenerAdapter {
         commands = new Command[]{
             new ClearCmd(),
             new DeleteCmd(emojis),
+            new EmbedCmd(),
+            new EmoteCmd(),
             new EvalCmd(),
             new GameCmd(),
             new GoogleCmd(),
@@ -94,6 +96,7 @@ public class Bot extends ListenerAdapter {
                     sbuilder.append("` ").append(command.description);
                 }
                 builder.setDescription(sbuilder.toString());
+                builder.setFooter("JSelfbot v"+Constants.VERSION, null);
                 event.getChannel().sendMessage(new MessageBuilder().setEmbed(builder.build()).build()).queue();
             }
             else

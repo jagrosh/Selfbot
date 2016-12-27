@@ -76,7 +76,7 @@ public class Config {
                     if(status == OnlineStatus.UNKNOWN)
                     {
                         status = OnlineStatus.IDLE;
-                        LOG.warn("\""+value+"\" is not a valid status; using the default IDLE! Valid statuses are ONLINE, IDLE, DO_NOT_DISTURB, and INVISIBLE.");
+                        LOG.warn("\""+value+"\" is not a valid status; using the default IDLE! Valid statuses are ONLINE, IDLE, DND, and INVISIBLE.");
                     }
             }
         }
