@@ -17,12 +17,9 @@ package jselfbot.commands;
 
 import jselfbot.Command;
 import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.MessageBuilder;
-import net.dv8tion.jda.core.MessageHistory;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
@@ -85,14 +82,14 @@ public class QuoteCmd extends Command {
             channel = event.getChannel();
         try
         {
-            MessageHistory.getHistoryAround(channel, messageId, 2).queue(
+            channel.getHistoryAround(messageId, 2).queue(
                     mh -> {
-                        if(mh.getCachedHistory().isEmpty())
+                        if(mh.getRetrievedHistory().isEmpty())
                         {
                             tempReply("No message history around `"+messageId+"`", event);
                             return;
                         }
-                        Message msg = mh.getCachedHistory().size()==1 || mh.getCachedHistory().size()==2 ? mh.getCachedHistory().get(0) : mh.getCachedHistory().get(1);
+                        Message msg = mh.getRetrievedHistory().size()==1 || mh.getRetrievedHistory().size()==2 ? mh.getRetrievedHistory().get(0) : mh.getRetrievedHistory().get(1);
                         EmbedBuilder builder = new EmbedBuilder();
                         builder.setAuthor(msg.getAuthor().getName()+" #"+msg.getAuthor().getDiscriminator(), null, 
                                 msg.getAuthor().getAvatarUrl()==null ? msg.getAuthor().getDefaultAvatarUrl() : msg.getAuthor().getAvatarUrl());
