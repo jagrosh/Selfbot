@@ -82,6 +82,7 @@ public class QuoteCmd extends Command {
             channel = event.getChannel();
         try
         {
+            String foot = channel.equals(event.getChannel()) ? "" : " in #"+channel.getName();
             channel.getHistoryAround(messageId, 2).queue(
                     mh -> {
                         if(mh.getRetrievedHistory().isEmpty())
@@ -92,7 +93,7 @@ public class QuoteCmd extends Command {
                         Message msg = mh.getRetrievedHistory().size()==1 || mh.getRetrievedHistory().size()==2 ? mh.getRetrievedHistory().get(0) : mh.getRetrievedHistory().get(1);
                         EmbedBuilder builder = new EmbedBuilder();
                         builder.setAuthor(msg.getAuthor().getName()+" #"+msg.getAuthor().getDiscriminator(), null, 
-                                msg.getAuthor().getAvatarUrl()==null ? msg.getAuthor().getDefaultAvatarUrl() : msg.getAuthor().getAvatarUrl());
+                                msg.getAuthor().getEffectiveAvatarUrl());
                         if(msg.getGuild()!=null)
                         {
                             Member member = msg.getGuild().getMemberById(msg.getAuthor().getId());
@@ -103,12 +104,12 @@ public class QuoteCmd extends Command {
                             builder.setImage(msg.getAttachments().get(0).getUrl());
                         if(msg.isEdited())
                         {
-                            builder.setFooter("Edited", null);
+                            builder.setFooter("Edited"+foot, null);
                             builder.setTimestamp(msg.getEditedTime());
                         }
                         else
                         {
-                            builder.setFooter("Sent", null);
+                            builder.setFooter("Sent"+foot, null);
                             builder.setTimestamp(msg.getCreationTime());
                         }
                         builder.setDescription(msg.getRawContent());
@@ -118,7 +119,7 @@ public class QuoteCmd extends Command {
         }
         catch(Exception e)
         {
-            tempReply("Could not retrieve history", event);
+            tempReply("Could not retrieve history: "+e, event);
         }
     }
     

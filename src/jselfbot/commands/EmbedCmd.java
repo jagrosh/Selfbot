@@ -52,7 +52,7 @@ public class EmbedCmd extends Command {
                     + "`{thumbnail:`IMAGE`}`\n"
                     + "`{field:`NAME`|`VALUE`|`true/false`}` or `{field:`NAME`|`VALUE`}` *can include multiple fields\n"
                     + "`{image:`IMAGE`}`\n"
-                    + "`{color:`#HEX`}`\n"
+                    + "`{color:`#HEX`}` or `{color:name}`\n"
                     + "`{footer:`TEXT`|`IMAGE`}` or `{footer:`TEXT`}`\n"
                     + "`{timestamp:`ISO`}` or `{timestamp}` *current time if nothing included\n"
                     + "Any remaining text goes into the description", event);

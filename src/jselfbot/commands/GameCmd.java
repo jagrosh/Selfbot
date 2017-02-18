@@ -43,8 +43,17 @@ public class GameCmd extends Command {
         else
         {
             try {
-                event.getJDA().getPresence().setGame(Game.of(args));
-                result = "Game set to `"+args+"`. Note that it will appear to everyone else but will not show in your own client.";
+                Game game;
+                if(args.startsWith("twitch"))
+                {
+                    String[] parts = args.substring(6).trim().split("\\s+",2);
+                    args = parts[1];
+                    game = Game.of(args, "http://twitch.tv/"+parts[0]);
+                }
+                else
+                    game = Game.of(args);
+                event.getJDA().getPresence().setGame(game);
+                result = "Game set to "+(game.getUrl()==null ? "Playing": "Streaming")+" `"+args+"`. Note that it will appear to everyone else but will not show in your own client.";
             } catch(Exception e) {
                 result = "Game could not be set to `"+args+"`";
             }
