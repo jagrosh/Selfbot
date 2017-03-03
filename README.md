@@ -39,6 +39,10 @@ status=IDLE
 
 If you have suggestions for the selfbot, you find bugs, or you'd like to request a feature, please join [my Discord Server](https://discord.gg/0p9LSGoRLu6Pet0k). The goal of this selfbot is having useful features and being easy to use.
 
+## Editing
+
+The source code is provided here for complete transparency about what is running. I will not provide any support for people wanting to edit this bot or add commands. If you make changes to the code and run it, please change the "JSelfbot" bit in the help to "Forked from JSelfbot" or similar. Additionally, I take absolutely zero responsibility to any issues or repercussions caused by editing this source.
+
 ## Final Notes
 
 Using selfbots is not officially supported by Discord. If you do something stupid, you _can_ get your account banned completely. Additionally, many users find selfbots annoying or unsafe. Use a selfbot responsibly. Don't use it to spam or to intentionally annoy other users. Any actions you make with a selfbot fall solely on you.
