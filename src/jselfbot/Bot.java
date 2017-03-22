@@ -41,6 +41,7 @@ public class Bot extends ListenerAdapter {
         prefixLower = prefix.toLowerCase();
         emojis = new Emojis();
         commands = new Command[]{
+            new AvatarCmd(),
             new ClearCmd(),
             new DeleteCmd(emojis),
             new EmbedCmd(),
@@ -81,7 +82,7 @@ public class Bot extends ListenerAdapter {
             
             if("help".equalsIgnoreCase(parts[0]))
             {
-                event.getMessage().deleteMessage().queue();
+                event.getMessage().delete().queue();
                 EmbedBuilder builder = new EmbedBuilder();
                 builder.setAuthor(event.getJDA().getSelfUser().getName()+" Self-Help", null, 
                         event.getJDA().getSelfUser().getAvatarUrl()==null ? event.getJDA().getSelfUser().getDefaultAvatarUrl() : event.getJDA().getSelfUser().getAvatarUrl());

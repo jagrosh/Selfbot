@@ -61,7 +61,7 @@ public class JagTagMethods {
                         case "blue": eb.setColor(Color.BLUE); break;
                         case "magenta": eb.setColor(Color.MAGENTA); break;
                         case "pink": eb.setColor(Color.PINK); break;
-                        case "black": eb.setColor(Color.BLACK); break;
+                        case "black": eb.setColor(Color.decode("#000001")); break;
                         case "dark_gray": 
                         case "dark_grey": eb.setColor(Color.DARK_GRAY); break;
                         case "gray":

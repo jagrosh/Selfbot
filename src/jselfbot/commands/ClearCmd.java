@@ -52,7 +52,7 @@ public class ClearCmd extends Command {
         try {
             event.getChannel().getHistory().retrievePast(num==100 ? 100 : num+1).queue(success -> {
                 List<Message> list = success.stream().filter(m -> event.getJDA().getSelfUser().equals(m.getAuthor()) && !event.getMessage().equals(m)).collect(Collectors.toList());
-                list.forEach(m -> m.deleteMessage().queue());
+                list.forEach(m -> m.delete().queue());
                 tempReply("Deleting "+list.size()+" messages.", event);
             }, failure -> {
                 tempReply("Failed retrieve messages.", event);

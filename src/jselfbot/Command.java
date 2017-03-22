@@ -38,7 +38,7 @@ public abstract class Command {
     {
         try {
             if(type == Type.DELETE_AND_RESEND)
-                event.getMessage().deleteMessage().queue();
+                event.getMessage().delete().queue();
             execute(args, event);
         } catch(Exception e) {
             failure(event);
@@ -92,7 +92,7 @@ public abstract class Command {
             action = event.getChannel().sendMessage(message);
         action.queue(m -> {
             try{Thread.sleep(2000);}catch(Exception e){}
-            m.deleteMessage().queue();
+            m.delete().queue();
         });
     }
     
