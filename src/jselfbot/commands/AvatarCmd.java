@@ -21,6 +21,7 @@ import java.util.List;
 import jselfbot.Command;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Game;
+import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.entities.impl.JDAImpl;
 import net.dv8tion.jda.core.entities.impl.UserImpl;
@@ -48,6 +49,12 @@ public class AvatarCmd extends Command {
         }
         else
         {
+            Guild g = event.getJDA().getGuildById(args);
+            if(g!=null)
+            {
+                reply(g.getIconUrl()+"?size=1024"+(g.getSplashId()==null ? "" : "\n"+g.getSplashUrl()+"?size=1024"),event);
+                return;
+            }
             List<User> users = findUsers(args, event.getJDA());
             if(users.isEmpty())
                 tempReply("No users found!", event);

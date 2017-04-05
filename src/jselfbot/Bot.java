@@ -18,6 +18,7 @@ package jselfbot;
 import jselfbot.commands.*;
 import jselfbot.entities.Config;
 import jselfbot.entities.Emojis;
+import jselfbot.entities.Todolist;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.ReadyEvent;
@@ -34,16 +35,19 @@ public class Bot extends ListenerAdapter {
     private final String prefixLower;
     private final Command[] commands;
     private final Emojis emojis;
+    private final Todolist todo;
     
     public Bot(Config config)
     {
         prefix = config.getprefix();
         prefixLower = prefix.toLowerCase();
         emojis = new Emojis();
+        todo = new Todolist();
         commands = new Command[]{
             new AvatarCmd(),
             new ClearCmd(),
             new DeleteCmd(emojis),
+            new DiscrimCmd(),
             new EmbedCmd(),
             new EmoteCmd(),
             new EvalCmd(),
@@ -55,7 +59,8 @@ public class Bot extends ListenerAdapter {
             new PollCmd(),
             new QuoteCmd(),
             new SetCmd(emojis),
-            new TimeCmd(config.getZoneId())
+            new TimeCmd(config.getZoneId()),
+            new TodoCmd(todo)
         };
     }
 

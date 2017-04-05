@@ -42,12 +42,25 @@ public class ListCmd extends Command {
             tempReply("No custom emojis!", event);
             return;
         }
-        StringBuilder sbuilder = new StringBuilder();
-        list.stream().forEach(name -> sbuilder.append("\n`:").append(name).append(":` \u27A1 `").append(emojis.getEmoji(name)).append("`"));
+        
         EmbedBuilder builder = new EmbedBuilder();
         if(event.getGuild()!=null)
             builder.setColor(event.getGuild().getSelfMember().getColor());
         builder.setAuthor("Custom Emojis:", null, null);
+        
+        StringBuilder sbuilder = new StringBuilder();
+        for(String ename: list)
+        {
+            String next = "\n`:"+ename+":` \u27A1 `"+emojis.getEmoji(ename)+"`";
+            if(sbuilder.length()+next.length()>2000)
+            {
+                reply(builder.setDescription(sbuilder.toString().trim()).build(),event);
+                builder.setAuthor(null,null,null);
+                sbuilder = new StringBuilder();
+            }
+            sbuilder.append(next);
+        }
+        
         builder.setDescription(sbuilder.toString().trim());
         reply(builder.build(), event);
     }
