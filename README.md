@@ -2,10 +2,14 @@
 This is a simple Discord selfbot, written in Java using the [JDA](https://github.com/DV8FromTheWorld/JDA) library.
 
 ## Features
+* Manage your personal to-do list!
 * `me` command for showing when you are doing an action
+* Make fancy embedded messages
 * Do quick google searches
 * Make reaction-based polls quickly and easily
+* Show users' or servers' avatars/icons
 * Share what time it is for you
+* See larger versions of (and find the server-of-origin) of custom emotes
 * Quote other users' messages (from any channel)
 * Cleanup your own messages if you realize you were spamming
 * Set your Discord game (Playing ...)
@@ -31,7 +35,7 @@ timezone=GMT+4
 status=IDLE
 ```
 
-4. **You don't need to do anything with the emojis.json file.** This file gets automatically loaded at start, and saved when you make edits to your emoji list with the `set` and `delete` commands. 
+4. **You don't need to do anything with the emojis.json or todo.json file.** This file gets automatically loaded at start, and saved when you make edits to your emoji list with the `set` and `delete` commands. 
 
 5. **Run the selfbot** If you're on Windows, you can just double-click `run.bat`. On Mac, double-click `run.command`. Otherwise... you'll want to do this via Command Line or Terminal. On most operating systems, you can right click in a directory (sometimes you need to hold shift) and click to open a Command Prompt or Terminal. If your operating system doesn't support this, just open a command line program of some sort and navigate to the selfbot directory (if you don't know how to do this, there are plenty of tutorials online). Once in the directoy, run with `java -jar JSelfBot.jar`
 
