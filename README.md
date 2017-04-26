@@ -24,11 +24,11 @@ This is a simple Discord selfbot, written in Java using the [JDA](https://github
 
 ## Setup
 
-1. **Download the latest release JSelfBot.jar from the [releases page](https://github.com/jagrosh/Selfbot/releases).** You can download the config.txt and/or emojis.json if you wish, although they are just templates and not necessary. You can download run.bat for easier starting on Windows
+1. **Download the latest release JSelfBot.jar from the [releases page](https://github.com/jagrosh/Selfbot/releases/latest).** You can download the config.txt and/or emojis.json if you wish, although they are just templates and not necessary. You can download run.bat for easier starting on Windows. *Do **not** download the source code; it will be of no use to you.*
 
 2. **Find your User Token.** In browser or desktop Discord, type `Ctrl-Shift-I`. Go to the Application section, and and go to **Storage** > **LocalStorage** > **discordapp.com**. Find the `token` row, and your token will be the value in quotes. ⚠ **Do not share this token with anyone** ⚠ This token provides complete access to your Discord account, so never share it!
 
-3. **Create or edit config.txt.** If you didn't download the template, create a new file called `config.txt` in the same directory as JSelfBot.jar. On the first line, paste your user token (_without_ the quotation marks). On the second line, type the prefix you want to use (for example, if you put `self.` on this line, the help command would be `self.help`)
+3. **Create or edit config.txt.** If you didn't download the template, create a new file called `config.txt` in the same directory as `JSelfBot.jar`. On the first line, paste your user token (_without_ the quotation marks). On the second line, type the prefix you want to use (for example, if you put `self.` on this line, the help command would be `self.help`)
 Example config.txt:
 ```
 token=Mfa.sjaslkkngejfnesjkaNiCETokeNBrosdhsajshfjkjlajf
