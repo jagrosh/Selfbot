@@ -1,6 +1,7 @@
 # Selfbot
 This is a simple Discord selfbot, written in Java using the [JDA](https://github.com/DV8FromTheWorld/JDA) library.<br>
-**Please scroll down for [Setup Instructions](#setup) and how to download!**
+<br>
+[![Setup](http://i.imgur.com/VvXYp5j.png)](#setup)
 
 ## Features
 * Manage your personal to-do list!
