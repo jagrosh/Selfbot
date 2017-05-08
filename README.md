@@ -43,7 +43,7 @@ status=IDLE
 
 ## Suggestions, Bugs, Feature Requests
 
-If you have suggestions for the selfbot, you find bugs, or you'd like to request a feature, please join [my Discord Server](https://discord.gg/0p9LSGoRLu6Pet0k). The goal of this selfbot is having useful features and being easy to use.
+If you have suggestions for the selfbot, you find bugs, or you'd like to request a feature, please open an issue on this repository. The goal of this selfbot is having useful features and being easy to use, so please make sure that any suggested features would fit into these requirements..
 
 ## Editing
 
@@ -51,4 +51,4 @@ The source code is provided here for complete transparency about what is running
 
 ## Final Notes
 
-Using selfbots is not officially supported by Discord. If you do something stupid, you _can_ get your account banned completely. Additionally, many users find selfbots annoying or unsafe. Use a selfbot responsibly. Don't use it to spam or to intentionally annoy other users. Any actions you make with a selfbot fall solely on you.
+Using selfbots is not officially supported by Discord. If you do something stupid, you _can_ get your account banned completely. Additionally, many users find selfbots annoying or unsafe. Use a selfbot responsibly. Don't use it to spam or to intentionally annoy other users. Any actions you make with a selfbot fall solely on you. You can read the full Discord Terms of Service [here](https://discordapp.com/terms)
