@@ -1,5 +1,7 @@
 # Selfbot
-This is a simple Discord selfbot, written in Java using the [JDA](https://github.com/DV8FromTheWorld/JDA) library.
+This is a simple Discord selfbot, written in Java using the [JDA](https://github.com/DV8FromTheWorld/JDA) library.<br>
+<br>
+[![Setup](http://i.imgur.com/VvXYp5j.png)](#setup)
 
 ## Features
 * Manage your personal to-do list!
@@ -22,11 +24,11 @@ This is a simple Discord selfbot, written in Java using the [JDA](https://github
 
 ## Setup
 
-1. **Download the latest release JSelfBot.jar from the [releases page](https://github.com/jagrosh/Selfbot/releases).** You can download the config.txt and/or emojis.json if you wish, although they are just templates and not necessary. You can download run.bat for easier starting on Windows
+1. **Download the latest release JSelfBot.jar from the [releases page](https://github.com/jagrosh/Selfbot/releases/latest).** You can download the config.txt and/or emojis.json if you wish, although they are just templates and not necessary. You can download run.bat for easier starting on Windows. *Do **not** download the source code; it will be of no use to you.*
 
 2. **Find your User Token.** In browser or desktop Discord, type `Ctrl-Shift-I`. Go to the Application section, and and go to **Storage** > **LocalStorage** > **discordapp.com**. Find the `token` row, and your token will be the value in quotes. ⚠ **Do not share this token with anyone** ⚠ This token provides complete access to your Discord account, so never share it!
 
-3. **Create or edit config.txt.** If you didn't download the template, create a new file called `config.txt` in the same directory as JSelfBot.jar. On the first line, paste your user token (_without_ the quotation marks). On the second line, type the prefix you want to use (for example, if you put `self.` on this line, the help command would be `self.help`)
+3. **Create or edit config.txt.** If you didn't download the template, create a new file called `config.txt` in the same directory as `JSelfBot.jar`. On the first line, paste your user token (_without_ the quotation marks). On the second line, type the prefix you want to use (for example, if you put `self.` on this line, the help command would be `self.help`)
 Example config.txt:
 ```
 token=Mfa.sjaslkkngejfnesjkaNiCETokeNBrosdhsajshfjkjlajf
@@ -41,7 +43,7 @@ status=IDLE
 
 ## Suggestions, Bugs, Feature Requests
 
-If you have suggestions for the selfbot, you find bugs, or you'd like to request a feature, please join [my Discord Server](https://discord.gg/0p9LSGoRLu6Pet0k). The goal of this selfbot is having useful features and being easy to use.
+If you have suggestions for the selfbot, you find bugs, or you'd like to request a feature, please open an issue on this repository. The goal of this selfbot is having useful features and being easy to use, so please make sure that any suggested features would fit into these requirements..
 
 ## Editing
 
@@ -49,4 +51,4 @@ The source code is provided here for complete transparency about what is running
 
 ## Final Notes
 
-Using selfbots is not officially supported by Discord. If you do something stupid, you _can_ get your account banned completely. Additionally, many users find selfbots annoying or unsafe. Use a selfbot responsibly. Don't use it to spam or to intentionally annoy other users. Any actions you make with a selfbot fall solely on you.
+Using selfbots is not officially supported by Discord. If you do something stupid, you _can_ get your account banned completely. Additionally, many users find selfbots annoying or unsafe. Use a selfbot responsibly. Don't use it to spam or to intentionally annoy other users. Any actions you make with a selfbot fall solely on you. You can read the full Discord Terms of Service [here](https://discordapp.com/terms)
