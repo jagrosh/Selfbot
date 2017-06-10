@@ -20,7 +20,6 @@ import java.util.Collections;
 import java.util.List;
 import jselfbot.Command;
 import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.entities.impl.JDAImpl;
@@ -75,7 +74,7 @@ public class AvatarCmd extends Command {
             id = query.replaceAll(USER_MENTION, "$1");
             if(id.equals("1"))
             {
-                UserImpl clyde = new UserImpl("1", (JDAImpl) jda);
+                UserImpl clyde = new UserImpl(1L, (JDAImpl) jda);
                 clyde.setDiscriminator("0000");
                 clyde.setBot(true);
                 clyde.setName("Clyde");

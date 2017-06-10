@@ -52,7 +52,7 @@ public class ListCmd extends Command {
         for(String ename: list)
         {
             String next = "\n`:"+ename+":` \u27A1 `"+emojis.getEmoji(ename)+"`";
-            if(sbuilder.length()+next.length()>2000)
+            if(sbuilder.length()+next.length()>1985)
             {
                 reply(builder.setDescription(sbuilder.toString().trim()).build(),event);
                 builder.setAuthor(null,null,null);

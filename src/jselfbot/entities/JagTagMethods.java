@@ -9,7 +9,7 @@ import java.awt.Color;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Collection;
-import me.jagrosh.jagtag.Method;
+import com.jagrosh.jagtag.Method;
 import net.dv8tion.jda.core.EmbedBuilder;
 
 /**

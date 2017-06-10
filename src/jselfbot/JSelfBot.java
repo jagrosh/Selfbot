@@ -42,7 +42,7 @@ public class JSelfBot {
         try {
             new JDABuilder(AccountType.CLIENT)
                     .setToken(config.getToken())
-                    .addListener(new Bot(config))
+                    .addEventListener(new Bot(config))
                     .setStatus(config.getStatus())
                     .setIdle(true)
                     .buildAsync();

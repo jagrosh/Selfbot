@@ -18,8 +18,8 @@ package jselfbot.commands;
 import jselfbot.Command;
 import jselfbot.Constants;
 import jselfbot.entities.JagTagMethods;
-import me.jagrosh.jagtag.Parser;
-import me.jagrosh.jagtag.ParserBuilder;
+import com.jagrosh.jagtag.Parser;
+import com.jagrosh.jagtag.ParserBuilder;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 

@@ -60,7 +60,7 @@ public class TodoCmd extends Command {
                     for(int i=0; i<todo.getList().size(); i++)
                     {
                         String next = "\n`"+(i+1)+".` "+todo.getList().get(i).toString();
-                        if(sbuilder.length()+next.length()>2000)
+                        if(sbuilder.length()+next.length()>1985)
                         {
                             reply(builder.setDescription(sbuilder.toString().trim()).build(),event);
                             builder.setAuthor(null,null,null);

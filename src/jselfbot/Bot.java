@@ -59,6 +59,7 @@ public class Bot extends ListenerAdapter {
             new PollCmd(),
             new QuoteCmd(),
             new SetCmd(emojis),
+            new SpoilerCmd(),
             new TimeCmd(config.getZoneId()),
             new TodoCmd(todo)
         };
