@@ -93,7 +93,7 @@ public class SpoilerCmd extends Command {
             event.getChannel().sendFile(new File("spoiler.gif"), null).queue();
             textG.dispose();
             hoverG.dispose();
-        }catch(IOException e){
+        }catch(Exception e){
             tempReply("Failed to generate spoiler image", event);
             //e.printStackTrace();
         }

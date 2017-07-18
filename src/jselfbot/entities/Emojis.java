@@ -47,7 +47,7 @@ public class Emojis {
             obj.keySet().stream().forEach(name -> emojis.put(name.toLowerCase(), obj.getString(name)));
             LOG.info("Successfully loaded "+emojis.keySet().size()+" custom emojis!");
         } catch(IOException e) {
-            LOG.warn(FILENAME+" was not found! This can be ignored if this is the first time running this.");
+            LOG.warn(FILENAME+" was not found! This can be ignored if you haven't set any custom emojis.");
         } catch(JSONException e) {
             LOG.fatal("The emojis file, "+FILENAME+" is corrupted. Please fix the file before adding emojis or the file will be overwritten.");
         }

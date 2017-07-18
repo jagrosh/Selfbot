@@ -52,7 +52,7 @@ public class Todolist {
                 todolist.add(new TodoItem(array.getJSONObject(i)));
             LOG.info("Successfully loaded "+todolist.size()+" todo entries!");
         } catch(IOException e) {
-            LOG.warn(FILENAME+" was not found! This can be ignored if this is the first time running this.");
+            LOG.warn(FILENAME+" was not found! This can be ignored if you haven't added any items to your todo list.");
         } catch(JSONException e) {
             LOG.fatal("The todo file, "+FILENAME+" is corrupted. Please fix the file before editing the todo list or the file will be overwritten.");
         }

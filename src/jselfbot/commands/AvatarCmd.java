@@ -48,7 +48,12 @@ public class AvatarCmd extends Command {
         }
         else
         {
-            Guild g = event.getJDA().getGuildById(args);
+            Guild g;
+            try {
+                g = event.getJDA().getGuildById(args);
+            } catch(Exception e) {
+                g = null;
+            }
             if(g!=null)
             {
                 reply(g.getIconUrl()+"?size=1024"+(g.getSplashId()==null ? "" : "\n"+g.getSplashUrl()+"?size=1024"),event);
@@ -62,7 +67,7 @@ public class AvatarCmd extends Command {
         }
     }
     
-    public final static String USER_MENTION = "<@!?(\\d+)>";
+    public final static String USER_MENTION = "<@!?(\\d{17,22})>";
     public final static String DISCORD_ID = "\\d{17,22}";
     
     public static List<User> findUsers(String query, JDA jda)

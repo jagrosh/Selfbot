@@ -57,7 +57,7 @@ public class GoogleSearcher {
                 try {
                     //result.add(temp.substring(7,temp.indexOf("&sa="))+"\n");
                     String rslt = URLDecoder.decode(temp.substring(7,temp.indexOf("&sa=")),"UTF-8");
-                    if(!rslt.equals("/settings/ads/preferences?hl=en") && !rslt.startsWith("http://webcache.googleusercontent.com"))
+                    if(!rslt.contains("/settings/ads/preferences") && !rslt.startsWith("http://webcache.googleusercontent.com"))
                         result.add(rslt);
                 } catch (UnsupportedEncodingException ex) {
                 }
