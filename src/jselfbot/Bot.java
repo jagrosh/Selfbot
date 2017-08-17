@@ -45,6 +45,7 @@ public class Bot extends ListenerAdapter {
         todo = new Todolist();
         commands = new Command[]{
             new AvatarCmd(),
+            new BashCmd(),
             new ClearCmd(),
             new DeleteCmd(emojis),
             new DiscrimCmd(),
