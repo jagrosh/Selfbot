@@ -23,12 +23,10 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
+import jselfbot.utils.FormatUtil;
 import net.dv8tion.jda.core.utils.SimpleLog;
-import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,7 +45,7 @@ public class Todolist {
         todolist = new ArrayList<>();
         JSONArray array;
         try {
-            array = new JSONArray(StringUtils.join(Files.readAllLines(Paths.get(FILENAME)), "\n"));
+            array = new JSONArray(FormatUtil.join(Files.readAllLines(Paths.get(FILENAME)), "\n"));
             for(int i=0; i<array.length(); i++)
                 todolist.add(new TodoItem(array.getJSONObject(i)));
             LOG.info("Successfully loaded "+todolist.size()+" todo entries!");

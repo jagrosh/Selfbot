@@ -17,9 +17,11 @@ package jselfbot.commands;
 
 import jselfbot.Command;
 import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
@@ -44,7 +46,7 @@ public class QuoteCmd extends Command {
             tempReply("`"+id1+"` is not a valid message or channel ID", event);
             return;
         }
-        MessageChannel channel = event.getJDA().getTextChannelById(id1);
+        MessageChannel channel = resolveChannel(id1, event.getJDA());
         String messageId;
         String followingText = null;
         if(channel != null) //channel id found, need a message id now
@@ -70,7 +72,7 @@ public class QuoteCmd extends Command {
             {
                 String[] parts2 = parts[1].split("\\s+", 2);
                 String id2 = parts2[0].replaceAll("<#(\\d+)>", "$1");
-                channel = event.getJDA().getTextChannelById(id2);
+                channel = resolveChannel(id2, event.getJDA());
                 if(channel == null)
                     followingText = parts[1];
                 else
@@ -123,6 +125,19 @@ public class QuoteCmd extends Command {
         }
     }
     
+    private static MessageChannel resolveChannel(String id, JDA jda)
+    {
+        MessageChannel mc = jda.getTextChannelById(id);
+        if(mc!=null)
+            return mc;
+        mc = jda.getPrivateChannelById(id);
+        if(mc!=null)
+            return mc;
+        User u = jda.getUserById(id);
+        if(u!=null)
+            return u.openPrivateChannel().complete();
+        return null;
+    }
     
     private static boolean isId(String id)
     {

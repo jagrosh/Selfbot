@@ -24,8 +24,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashMap;
+import jselfbot.utils.FormatUtil;
 import net.dv8tion.jda.core.utils.SimpleLog;
-import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -43,7 +43,7 @@ public class Emojis {
         emojis = new HashMap<>();
         JSONObject obj;
         try {
-            obj = new JSONObject(StringUtils.join(Files.readAllLines(Paths.get(FILENAME)), "\n"));
+            obj = new JSONObject(FormatUtil.join(Files.readAllLines(Paths.get(FILENAME)), "\n"));
             obj.keySet().stream().forEach(name -> emojis.put(name.toLowerCase(), obj.getString(name)));
             LOG.info("Successfully loaded "+emojis.keySet().size()+" custom emojis!");
         } catch(IOException e) {
