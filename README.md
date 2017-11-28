@@ -1,6 +1,11 @@
+[![Downloads](https://img.shields.io/github/downloads/jagrosh/Selfbot/total.svg)](https://github.com/jagrosh/Selfbot/releases/latest)
+[![Release](https://img.shields.io/github/release/jagrosh/Selfbot.svg)](https://github.com/jagrosh/Selfbot/releases/latest)
+[![License](https://img.shields.io/github/license/jagrosh/Selfbot.svg)](https://github.com/jagrosh/Selfbot/blob/master/LICENSE)
+[![Contributors](https://img.shields.io/github/contributors/jagrosh/Selfbot.svg)](https://github.com/jagrosh/Selfbot/graphs/contributors)
+
 # Selfbot
-This is a simple Discord selfbot, written in Java using the [JDA](https://github.com/DV8FromTheWorld/JDA) library.<br>
-<br>
+This is a simple Discord selfbot, written in Java using the [JDA](https://github.com/DV8FromTheWorld/JDA) library.
+
 [![Setup](http://i.imgur.com/VvXYp5j.png)](#setup)
 
 ## Features
