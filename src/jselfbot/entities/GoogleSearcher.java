@@ -20,10 +20,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import net.dv8tion.jda.core.utils.SimpleLog;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -63,7 +63,7 @@ public class GoogleSearcher {
                 }
             });
         } catch (IOException e) {
-            SimpleLog.getLog("Google").fatal("Search failure: "+e.toString());
+            LoggerFactory.getLogger("Google").error("Search failure: "+e.toString());
             return null;
         }
         return result;

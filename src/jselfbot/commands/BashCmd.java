@@ -21,7 +21,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import jselfbot.Command;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.utils.SimpleLog;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Runs a shell command.
@@ -29,6 +30,8 @@ import net.dv8tion.jda.core.utils.SimpleLog;
  * @author Artu
  */
 public class BashCmd extends Command {
+    
+    private final static Logger LOG = LoggerFactory.getLogger("Bash");
     public BashCmd() {
         this.name = "bash";
         this.description = "run a command on a shell";
@@ -67,7 +70,7 @@ public class BashCmd extends Command {
             reply("I wasn't able to find the command `" + args + "`!", event);
             return;
         } catch (Exception e) {
-            SimpleLog.getLog("Bash").warn("An unknown error occurred!");
+            LOG.warn("An unknown error occurred!");
             e.printStackTrace();
             reply("An unknown error occurred! Check the bot console.", event);
             return;
@@ -77,7 +80,7 @@ public class BashCmd extends Command {
         try {
             reply("Input: ```\n" + args + "``` Output: \n```\n" + finalOutput + "```", event);
         } catch (IllegalArgumentException e) {
-            SimpleLog.getLog("Bash").info("Input: " + args + "\nOutput: " + finalOutput);
+            LOG.info("Input: " + args + "\nOutput: " + finalOutput);
             reply("Command output too long! Output sent in console.", event);
         }
     }

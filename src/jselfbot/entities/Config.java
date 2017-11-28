@@ -20,18 +20,20 @@ import java.nio.file.Paths;
 import java.time.ZoneId;
 import java.util.List;
 import net.dv8tion.jda.core.OnlineStatus;
-import net.dv8tion.jda.core.utils.SimpleLog;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author John Grosh (jagrosh)
  */
 public class Config {
-    private final SimpleLog LOG = SimpleLog.getLog("Config");
+    private final Logger LOG = LoggerFactory.getLogger("Config");
     private String userToken;
     private String prefix;
     private ZoneId zone = null;
     private OnlineStatus status;
+    private boolean bot = false;
     
     public Config() throws Exception
     {
@@ -78,6 +80,9 @@ public class Config {
                         status = OnlineStatus.IDLE;
                         LOG.warn("\""+value+"\" is not a valid status; using the default IDLE! Valid statuses are ONLINE, IDLE, DND, and INVISIBLE.");
                     }
+                    break;
+                case "bot":
+                    bot = "true".equalsIgnoreCase(value);
             }
         }
         if(userToken==null)
@@ -114,5 +119,10 @@ public class Config {
     public OnlineStatus getStatus()
     {
         return status;
+    }
+    
+    public boolean isForBot()
+    {
+        return bot;
     }
 }

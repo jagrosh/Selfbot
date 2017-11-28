@@ -25,9 +25,10 @@ import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashMap;
 import jselfbot.utils.FormatUtil;
-import net.dv8tion.jda.core.utils.SimpleLog;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -36,7 +37,7 @@ import org.json.JSONObject;
 public class Emojis {
     private final HashMap<String, String> emojis;
     private final static String FILENAME = "emojis.json";
-    private final static SimpleLog LOG = SimpleLog.getLog("Emojis");
+    private final static Logger LOG = LoggerFactory.getLogger("Emojis");
     
     public Emojis()
     {
@@ -49,7 +50,7 @@ public class Emojis {
         } catch(IOException e) {
             LOG.warn(FILENAME+" was not found! This can be ignored if you haven't set any custom emojis.");
         } catch(JSONException e) {
-            LOG.fatal("The emojis file, "+FILENAME+" is corrupted. Please fix the file before adding emojis or the file will be overwritten.");
+            LOG.error("The emojis file, "+FILENAME+" is corrupted. Please fix the file before adding emojis or the file will be overwritten.");
         }
     }
     
@@ -60,7 +61,7 @@ public class Emojis {
         try (Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FILENAME), "UTF-8"))) {
             out.write(obj.toString(2));
         }catch(IOException e) {
-            LOG.fatal("Failed to save emojis to "+FILENAME);
+            LOG.error("Failed to save emojis to "+FILENAME);
         }
     }
     

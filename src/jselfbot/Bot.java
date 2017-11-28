@@ -24,7 +24,7 @@ import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
-import net.dv8tion.jda.core.utils.SimpleLog;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -68,7 +68,7 @@ public class Bot extends ListenerAdapter {
 
     @Override
     public void onReady(ReadyEvent event) {
-        SimpleLog.getLog("Selfbot").info("Successfully logged in as "+event.getJDA().getSelfUser().getName()
+        LoggerFactory.getLogger("Selfbot").info("Successfully logged in as "+event.getJDA().getSelfUser().getName()
                 +"#"+event.getJDA().getSelfUser().getDiscriminator()+"!\nYou are currently in "+event.getJDA().getGuilds().size()
                 +" guilds!\nType "+prefix+"help in Discord to get started!");
     }

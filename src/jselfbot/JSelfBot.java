@@ -20,7 +20,7 @@ import jselfbot.entities.Config;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
-import net.dv8tion.jda.core.utils.SimpleLog;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -36,18 +36,18 @@ public class JSelfBot {
         try{
             config = new Config();
         } catch(Exception e) {
-            SimpleLog.getLog("Config").fatal(e);
+            LoggerFactory.getLogger("Config").error(""+e);
             return;
         }
         try {
-            new JDABuilder(AccountType.CLIENT)
+            new JDABuilder(config.isForBot() ? AccountType.BOT : AccountType.CLIENT)
                     .setToken(config.getToken())
                     .addEventListener(new Bot(config))
                     .setStatus(config.getStatus())
                     .setIdle(true)
                     .buildAsync();
         } catch(LoginException | IllegalArgumentException | RateLimitedException e) {
-            SimpleLog.getLog("Login").fatal(e);
+            LoggerFactory.getLogger("Config").error(""+e);
         }
     }
     

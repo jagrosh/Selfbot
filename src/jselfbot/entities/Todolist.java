@@ -26,10 +26,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import jselfbot.utils.FormatUtil;
-import net.dv8tion.jda.core.utils.SimpleLog;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -38,7 +39,7 @@ import org.json.JSONObject;
 public class Todolist {
     private final List<TodoItem> todolist;
     private final static String FILENAME = "todo.json";
-    private final static SimpleLog LOG = SimpleLog.getLog("Todo");
+    private final static Logger LOG = LoggerFactory.getLogger("Todo");
     
     public Todolist()
     {
@@ -52,7 +53,7 @@ public class Todolist {
         } catch(IOException e) {
             LOG.warn(FILENAME+" was not found! This can be ignored if you haven't added any items to your todo list.");
         } catch(JSONException e) {
-            LOG.fatal("The todo file, "+FILENAME+" is corrupted. Please fix the file before editing the todo list or the file will be overwritten.");
+            LOG.error("The todo file, "+FILENAME+" is corrupted. Please fix the file before editing the todo list or the file will be overwritten.");
         }
     }
     
@@ -63,7 +64,7 @@ public class Todolist {
         try (Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FILENAME), "UTF-8"))) {
             out.write(array.toString(2));
         }catch(IOException e) {
-            LOG.fatal("Failed to save todolist to "+FILENAME);
+            LOG.error("Failed to save todolist to "+FILENAME);
         }
     }
     
